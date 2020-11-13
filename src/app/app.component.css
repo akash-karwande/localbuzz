@@ -1,0 +1,53 @@
+.search-form-field {
+    width: 90%;
+    box-shadow: 3px 12px 20px 0 rgba(32, 33, 36, 0.28);
+    margin-bottom: 30px;
+    border-radius: 10px;
+    padding: 0 20px;
+}
+
+mat-card {
+    text-align: center;
+    box-shadow: 3px 12px 20px 0 rgba(32, 33, 36, 0.28) !important;
+    border-radius: 20px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+}
+.outerCard {
+    border-radius: 20px;
+}
+
+.fivedays,
+.sunrise-and-sunset,
+.pressure-and-humidity {
+    display: flex;
+    width: 100%;
+}
+
+.fivedays div {
+    width: 100%;
+}
+
+.pressure-and-humidity div {
+    width: 100%;
+    background: #a1f0f030;
+    margin: 5px;
+    padding: 10px;
+}
+
+.sunrise-and-sunset div {
+    width: 100%;
+}
+
+.sunrise-and-sunset .sunset {
+    text-align: right;
+}
+
+.sunrise {
+    text-align: left;
+}
