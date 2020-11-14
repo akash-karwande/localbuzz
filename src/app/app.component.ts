@@ -10,24 +10,35 @@ import WeatherData from '../model/Datainterface'
 export class AppComponent implements OnInit {
   title = 'localbuzz';
   public fivedays = [];
-  public currentCity = {};
+  public cityName = 'Mumbai';
+  public currentCity;
+  public loading: boolean;
   constructor(private _service: ApiService) {
 
   }
 
   ngOnInit() {
-    this._service.getData('pune').subscribe((response: WeatherData) => {
+    this.loading = true;
+    this._service.getData(this.cityName).subscribe((response: WeatherData) => {
       this.currentCity = response.city;
-      this.fivedays = response.list.slice(0, 5)
-
-      console.log(this.currentCity, this.fivedays);
-
-
+      this.fivedays = response.list
+      this.loading = false
     })
   }
 
-  fetchdata(e) {
-    console.log('hi');
-
+  fetchdata(event) {
+    if (event.key == 'Enter') {
+      this.loading = true;
+      this._service.getData(event.target.value).subscribe((response: WeatherData) => {
+        this.currentCity = response.city;
+        this.fivedays = response.list
+        // console.log(this.fivedays, this.currentCity);
+      }, (err) => {
+        alert(`Weather not available for the ${event.target.value}`)
+        this.loading = false
+      }, () => {
+        this.loading = false
+      })
+    }
   }
 }

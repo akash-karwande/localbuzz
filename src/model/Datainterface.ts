@@ -1,8 +1,12 @@
 export default interface WeatherData {
-    cod: String,
-    message: Number,
-    cnt: Number,
-    list: [],
+    cod: string,
+    message: number,
+    cnt: number,
+    list: [{
+        dt: number,
+        dt_txt: string,
+        main: {}
+    }],
     city: {}
 
 }

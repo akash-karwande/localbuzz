@@ -1,23 +1,21 @@
 <mat-card class="outerCard">
   <mat-form-field class="search-form-field">
-    <input onkeypress="fetchdata(e)" matInput type="text">
+    <input (keyup)="fetchdata($event)" matInput type="text">
   </mat-form-field>
   <div class="fivedays">
     <ng-container *ngFor="let day of fivedays">
       <div class="days">
-        <p>{{day.dt_txt | date:format | uppercase}}</p>
+        <p>{{day.dt_txt | date:'EEE'}}</p>
         <p><strong>{{(day.main.temp_max)-273.15 | number:'1.0-0'}}°</strong>
           {{(day.main.temp_min)-273.15 | number:'1.0-0'}}°</p>
-        <img src="" alt="">
+        <span>{{day.dt_txt | date:"shortTime"}}</span>
         <p>{{day.weather[0].main}}</p>
       </div>
     </ng-container>
   </div>
   <mat-card>
-    <h1>{{(fivedays[0]?.main.temp)- 273.15 | number:'1.0-0'}} °C</h1>
-    <div class="graph">
-      <p>add mat graph</p>
-    </div>
+    <h1><strong>{{(fivedays[0]?.main.temp)- 273.15 | number:'1.0-0'}} °C</strong></h1>
+    <h2><strong>{{currentCity?.name}}</strong></h2>
     <div class="pressure-and-humidity">
       <div class="pressure">
         <h2>Pressure</h2>
@@ -32,17 +30,17 @@
     <div class="sunrise-and-sunset">
       <div class="sunrise">
         <h2>Sunrise</h2>
-        <p>{{currentCity.sunrise | date:'shortTime'}}</p>
+        <p>{{currentCity?.sunrise | date:"hh:mm"}} AM</p>
       </div>
       <div class="sunset">
         <h2>Sunset</h2>
-        <p>{{currentCity.sunset | date:'shortTime'}}</p>
+        <p>{{currentCity?.sunset | date:"hh:mm"}} PM</p>
       </div>
-    </div>
-
-    <div class="sunset-graph">
-      <h2>Mat graph</h2>
     </div>
   </mat-card>
 
 </mat-card>
+
+<div class="loader" *ngIf="loading">
+  <div class="loading">Loading...</div>
+</div>
