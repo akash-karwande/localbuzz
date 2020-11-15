@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiKey: 'e84fe97ab68c371f1d4e97d3aeaf3e9c',
+  apiURI: 'http://api.openweathermap.org/data/2.5'
 };
